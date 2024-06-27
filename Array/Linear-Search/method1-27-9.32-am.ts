@@ -10,25 +10,15 @@
 
 const array: number[] = [1,2,3,4,5]
 const arrayLength : number = array.length
-const searchedNum : number = 6
+const searchedNum : number = 4
 function linearSearch (array:number[],arrayLength:number,searchedNum:number) : number{
-    let flag:Boolean = false
-    for (let num = 0; num < arrayLength; num++) {
-        if(searchedNum===array[num]){
-            flag = true
-        }
-    }
-    if(flag){
-        console.log(flag)
-        return searchedNum
-    }else{
-        return -1
-    }
-    
+    for (let num = 0; num < arrayLength; num++)
+        if(searchedNum===array[num])
+            return num
+        return -1   
 }
 
 let result = linearSearch(array,arrayLength,searchedNum)
-result === -1 ?
-    console.log('Element is not in array'): console.log('Element is present in array',result);
 
-console.log(result,'result is showing');
+    result === -1 ? console.log('Element is not in array'): console.log('Element is present at index',result);
+
