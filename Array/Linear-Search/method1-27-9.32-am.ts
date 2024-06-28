@@ -8,8 +8,7 @@
 
 // Below is the implementation of the linear search algorithm:
 
-//Here generating random number using Math.random and that number should be length of array . Then iterating over according number . 
-//Then checking whether the generated number contain in the generated array
+
 
 let number : number = Math.floor(Math.random() * 10) 
 const array: number[] = []
