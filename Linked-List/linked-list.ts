@@ -51,6 +51,43 @@ class LinkedList {
     this.size++
   }
 
+  // removeNodeUsingIndex(index:number) : number {
+  //   if(this.isEmpty()){
+  //     console.log('value is null');
+  //     return -1
+  //   }
+  //   if(index < 0 || index > this.size){
+  //     console.log('list is empty');
+  //     return 
+  //   }
+  // }
+
+  insertValue(value:number,index:number):number{
+    if(index < 0 || index > this.size){
+      console.log('index is invalid');
+      return index
+    }
+    const node = new Nodes(value)
+    if(index === 0 ){
+      this.prepend(value)
+    }else{
+      let prev : Nodes | null = this.head
+      for(let i = 0 ; i< index -1 ; i++){
+        if(prev !== null){
+          prev = prev.next
+        }
+      }
+      let nextNode : Nodes | null
+      if(prev !== null){
+        nextNode = prev.next
+        node.next = nextNode
+        prev.next = node
+      }
+    }
+
+    this.size++
+    return value
+  }
   
 
   print(): void {
@@ -78,5 +115,7 @@ list.prepend(4);
 list.prepend(6)
 
 list.append(3)
+
+list.insertValue(2,5)
 
 list.print();
