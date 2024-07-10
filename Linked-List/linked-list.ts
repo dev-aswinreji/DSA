@@ -77,6 +77,7 @@ class LinkedList {
       if (prev !== null && prev.next !== null) {
         removeNode = prev.next;
         prev.next = prev.next.next;
+        this.tail = prev
       }
     }
     this.size--;
@@ -122,21 +123,68 @@ class LinkedList {
     } else {
       let prev: Nodes | null = this.head;
       let index: number = 0;
-      console.log(prev,'prev outside while');
+      console.log(prev, "prev outside while");
       while (prev?.next && prev.next.value !== value) {
         prev = prev.next;
-        console.log(prev,'prev')
+        console.log(prev, "prev");
         index++;
       }
-      console.log(prev,'abouve if statement');
-       if(prev !== null && prev.next){
-          prev.next = prev.next.next
-          return index
-        }
-      
+      console.log(prev, "abouve if statement");
+      if (prev !== null && prev.next) {
+        prev.next = prev.next.next;
+        this.size--
+        return index;
+      }
       console.log("value not found");
       return -1;
     }
+  }
+
+  removeFirstNode(): number {
+    if (this.isEmpty()) {
+      console.log("List is empty");
+      return -1;
+    }
+    let removeNode: Nodes | null;
+    if (this.size === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      removeNode = this.head;
+      if (removeNode) this.head = removeNode.next;
+    }
+    console.log('First node removed succesfully');
+    this.size--;
+    return -1;
+  }
+
+  removeLastNode(): null{
+    if(this.isEmpty()){
+      console.log('List is empty')
+      return null
+    }
+    if(this.size === 1){
+      this.head = null;
+      this.tail = null
+      this.size--
+      return null
+    }
+    
+    let prev : null | Nodes= this.head
+
+    if(prev ) {
+      while(prev?.next && prev.next !== this.tail){
+        prev = prev?.next
+      }
+      if(prev && this.tail){
+        prev.next = null
+        let value : number = this.tail?.value
+        prev = this.tail
+        this.size--
+        return null;
+      }      
+    }
+    return null
   }
 
   print(): void {
@@ -168,8 +216,12 @@ list.append(3);
 list.insertValue(2, 5);
 
 list.removeNodeUsingIndex(2);
-
-
-list.removeNodeUsingValue(4)
-
 list.print();
+
+list.removeNodeUsingValue(4);
+
+list.removeFirstNode()
+list.removeLastNode()
+list.print();
+
+console.log(list.getSize());
